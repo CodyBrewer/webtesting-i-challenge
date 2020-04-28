@@ -1,0 +1,26 @@
+{
+  "name": "webtesting-i-challenge",
+  "version": "1.0.0",
+  "description": "lambda assignment for Unit testing JavaScript with Jest.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodyBrewer/webtesting-i-challenge.git"
+  },
+  "keywords": [
+    "JavaScript",
+    "Jest"
+  ],
+  "author": "CodyBrewer (https://codybrewer.dev)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CodyBrewer/webtesting-i-challenge/issues"
+  },
+  "homepage": "https://github.com/CodyBrewer/webtesting-i-challenge#readme",
+  "devDependencies": {
+    "jest": "^25.4.0"
+  }
+}

@@ -38,7 +38,9 @@ function repair(item) {
 }
 
 function get(item) {
-  return { ...item };
+  return item.enhancement > 0
+    ? { ...item, name: `[${item.enhancement}] ${item.name}` }
+    : { ...item };
 }
 
 module.exports = {

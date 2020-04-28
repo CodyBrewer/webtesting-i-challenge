@@ -26,7 +26,6 @@ const weapons = [
 
 
 describe('enhancer', () => {
-
   describe('repair', () => {
     const { repair } = enhancer;
 
@@ -44,15 +43,50 @@ describe('enhancer', () => {
   describe('fail', () => {
     const { fail } = enhancer;
 
+    // assess
     it('takes in an item and if item\'s enhancement < 15 durability of item is decreased by 5 or 0 whichever is greater', () => {
       // arrange
-      const expectedResults = [50, 60, 95, 0];
-
+      const expected = [
+        { durability: 40, enhancement: 15 },
+        { durability: 50, enhancement: 18 },
+        { durability: 95, enhancement: 5 },
+        { durability: 0, enhancement: 3 },
+      ];
       // act
-      const actualResults = weapons.map((weapon) => fail(weapon));
+      const actual = weapons.map((weapon) => fail(weapon));
+      // // arrange
+      actual.forEach((result, idx) => expect(result.durability).toBe(expected[idx].durability));
+    });
+    // assess
+    it('takes in an item and if item\'s enhancement is >= 15 durability decreased by 10', () => {
+      // arrange
+      const expectedResults = [
+        { durability: 40, enhancement: 15 },
+        { durability: 50, enhancement: 18 },
+        { durability: 95, enhancement: 5 },
+        { durability: 0, enhancement: 3 },
+      ];
+      // act
+      const actual = weapons.map(((weapon) => fail(weapon)));
 
       // assess
-      actualResults.forEach((result, idx) => expect(result.durability).toBe(expectedResults[idx]));
+      actual.forEach((result, idx) => {
+        expect(result.durability).toBe(expectedResults[idx].durability);
+      });
+    });
+    // assess
+    it('takes in an item and if item\'s is greater than 16, the enhancement level decreases by 1', () => {
+      const expectedResults = [
+        { durability: 40, enhancement: 15 },
+        { durability: 50, enhancement: 17 },
+        { durability: 95, enhancement: 5 },
+        { durability: 0, enhancement: 3 },
+      ];
+      // act
+      const actual = weapons.map(((weapon) => fail(weapon)));
+      actual.forEach((result, idx) => {
+        expect(result.enhancement).toBe(expectedResults[idx].enhancement);
+      });
     });
   });
 });

@@ -5,6 +5,12 @@ function success(item) {
 
 // Returns item modified according to the rules defined by the client for the enchancement failure.
 function fail(item) {
+  if (item.enhancement < 15) {
+    const decreased = item.durability - 5;
+    return decreased < 0
+      ? { ...item, durability: 0 }
+      : { ...item, durability: decreased };
+  }
   return { ...item };
 }
 

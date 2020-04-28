@@ -1,6 +1,8 @@
 // Returns item modified according to the rules defined by the client for the enhancement success.
 function success(item) {
-  return { ...item };
+  return item.enhancement < 20
+    ? { ...item, enhancement: item.enhancement + 1 }
+    : { ...item };
 }
 
 // Returns item modified according to the rules defined by the client for the enchancement failure.

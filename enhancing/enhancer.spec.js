@@ -22,6 +22,11 @@ const weapons = [
     durability: 3,
     enhancement: 3,
   },
+  {
+    name: 'greatsword',
+    durability: 100,
+    enhancement: 20,
+  },
 ];
 
 
@@ -51,6 +56,7 @@ describe('enhancer', () => {
         { durability: 50, enhancement: 18 },
         { durability: 95, enhancement: 5 },
         { durability: 0, enhancement: 3 },
+        { durability: 90, enhancement: 15 },
       ];
       // act
       const actual = weapons.map((weapon) => fail(weapon));
@@ -65,6 +71,7 @@ describe('enhancer', () => {
         { durability: 50, enhancement: 18 },
         { durability: 95, enhancement: 5 },
         { durability: 0, enhancement: 3 },
+        { durability: 90, enhancement: 20 },
       ];
       // act
       const actual = weapons.map(((weapon) => fail(weapon)));
@@ -75,17 +82,37 @@ describe('enhancer', () => {
       });
     });
     // assess
-    it('takes in an item and if item\'s is greater than 16, the enhancement level decreases by 1', () => {
-      const expectedResults = [
+    xit('takes in an item and if item\'s is greater than 16, the enhancement level decreases by 1', () => {
+      const expected = [
         { durability: 40, enhancement: 15 },
         { durability: 50, enhancement: 17 },
         { durability: 95, enhancement: 5 },
         { durability: 0, enhancement: 3 },
+        { durability: 90, enhancement: 19 },
       ];
       // act
-      const actual = weapons.map(((weapon) => fail(weapon)));
+      const actual = weapons.map((weapon) => fail(weapon));
       actual.forEach((result, idx) => {
-        expect(result.enhancement).toBe(expectedResults[idx].enhancement);
+        expect(result.enhancement).toBe(expected[idx].enhancement);
+      });
+    });
+  });
+  describe('success', () => {
+    const { success } = enhancer;
+    it('should increase the items enhancement by 1 if enchancement level is < 20', () => {
+      // arrange
+      const expected = [
+        { durability: 40, enhancement: 16 },
+        { durability: 50, enhancement: 19 },
+        { durability: 95, enhancement: 6 },
+        { durability: 0, enhancement: 4 },
+        { durability: 100, enhancement: 20 },
+      ];
+      // act
+      const actual = weapons.map((weapon) => success(weapon));
+      // assess
+      actual.forEach((result, idx) => {
+        expect(result.enhancement).toBe(expected[idx].enhancement);
       });
     });
   });

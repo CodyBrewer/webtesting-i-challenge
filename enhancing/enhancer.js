@@ -10,6 +10,22 @@ function fail(item) {
     return decreased < 0
       ? { ...item, durability: 0 }
       : { ...item, durability: decreased };
+  } if (item.enhancement >= 15) {
+    if (item.enhancement > 16) {
+      const decreased = item.durability - 10;
+      const dehanced = item.enhancement - 1;
+      if (decreased > 0 && dehanced > 0) {
+        return { ...item, durability: decreased, enhancement: dehanced };
+      }
+      if (decreased < 0 && dehanced > 0) {
+        return { ...item, durability: 0, enhancement: dehanced };
+      }
+      return { ...item, durability: 0, enhancement: 0 };
+    }
+    const decreased = item.durability - 10;
+    return decreased > 0
+      ? { ...item, durability: decreased }
+      : { ...item, durability: 0 };
   }
   return { ...item };
 }
